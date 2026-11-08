@@ -3,9 +3,20 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+
   resolve: {
     alias: {
       '@': '/src',
     },
+  },
+
+  server: {
+    host: '0.0.0.0',
+    allowedHosts: ['rainready-ks0n.onrender.com'],
+  },
+
+  preview: {
+    host: '0.0.0.0',
+    allowedHosts: ['rainready-ks0n.onrender.com'],
   },
 })
