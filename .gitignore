@@ -4,6 +4,9 @@ node_modules/
 # Build output
 dist/
 
+# Submission ZIPs (large binary files — keep local only)
+*.zip
+
 # Vite cache
 .vite/
 
