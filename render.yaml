@@ -3,7 +3,7 @@ services:
     name: rainready-flowsense
     runtime: node
     buildCommand: npm install && npm run build
-    startCommand: npm start
+    startCommand: npx serve dist -l $PORT
     envVars:
       - key: NODE_VERSION
         value: 20
