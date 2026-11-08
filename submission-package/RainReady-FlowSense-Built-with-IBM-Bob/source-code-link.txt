@@ -1,0 +1,37 @@
+RainReady FlowSense — Source Code
+
+SOURCE CODE
+-----------
+The complete source code is included in this submission ZIP as:
+  rainready-flowsense-source.zip
+
+To extract and run:
+  1. Unzip rainready-flowsense-source.zip
+  2. cd rainready-flowsense
+  3. npm install
+  4. npm run dev
+
+Stack:
+  - React 18 + TypeScript
+  - Vite build tool
+  - Tailwind CSS v3
+  - In-memory state (no backend required)
+
+Repository structure:
+  src/
+  ├── types/         — TypeScript domain models
+  ├── data/          — Seeded demo data
+  ├── store/         — AppContext + FlowContext (useReducer)
+  ├── components/
+  │   ├── shell/     — Sidebar + Topbar layout
+  │   ├── flowsense/ — All FlowSense detection pages
+  │   ├── dashboard/ — Community reports dashboard
+  │   ├── report/    — Public report form
+  │   ├── review/    — Human review workflow
+  │   ├── alerts/    — Public alert display
+  │   ├── tasks/     — Response task coordination
+  │   └── ...
+  └── App.tsx        — Root with sidebar shell
+
+IBM Bobathon 2026 — Student Category
+Built with IBM Bob as AI-assisted development partner

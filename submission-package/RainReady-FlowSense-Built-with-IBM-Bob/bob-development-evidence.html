@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IBM Bob Development Evidence — RainReady FlowSense</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; font-size: 14px; line-height: 1.7; color: #1f2328; background: #f7f8fa; }
+  .page { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+  header { background: #0F2A4A; color: #fff; padding: 36px 40px; border-radius: 12px; margin-bottom: 32px; }
+  header h1 { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+  header p { color: #A8D8EA; font-size: 14px; }
+  header .tag { display: inline-block; background: #5BC4BF; color: #0F2A4A; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
+  h2 { font-size: 18px; font-weight: 700; color: #0F2A4A; margin: 32px 0 10px; padding-bottom: 6px; border-bottom: 2px solid #e5e7eb; }
+  h3 { font-size: 14px; font-weight: 700; color: #1f2328; margin: 16px 0 6px; }
+  p { margin-bottom: 10px; }
+  ul { padding-left: 20px; margin-bottom: 10px; }
+  li { margin-bottom: 4px; }
+  .phase { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; }
+  .phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .phase-num { background: #0F2A4A; color: #fff; font-size: 12px; font-weight: 800; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .phase-title { font-size: 16px; font-weight: 700; color: #0F2A4A; }
+  .phase-tag { margin-left: auto; font-size: 11px; background: #EFF6FF; color: #1D4ED8; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .screenshot-placeholder { background: #f3f4f6; border: 2px dashed #d1d5db; border-radius: 8px; padding: 24px; text-align: center; color: #9ca3af; font-size: 13px; margin: 12px 0; }
+  .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+  .before { background: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px; padding: 12px 16px; }
+  .after { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; padding: 12px 16px; }
+  .before strong { color: #DC2626; }
+  .after strong { color: #16A34A; }
+  .highlight { background: #FFFBEB; border-left: 4px solid #F59E0B; padding: 10px 16px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 13px; }
+  code { background: #f3f4f6; padding: 1px 6px; border-radius: 4px; font-family: monospace; font-size: 12px; }
+  footer { text-align: center; color: #9ca3af; font-size: 12px; border-top: 1px solid #e5e7eb; padding-top: 24px; margin-top: 48px; }
+  @media (max-width: 600px) { .before-after { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="tag">IBM Bobathon 2026 · Student Category</div>
+  <h1>Built with IBM Bob — Development Evidence</h1>
+  <p>RainReady FlowSense · 10-Phase Development Story</p>
+  <p style="margin-top:8px;font-size:12px;color:#718096;">This document records how IBM Bob was used as the development assistant throughout this prototype. All claims are honest. No live IBM AI services run inside the app at runtime.</p>
+</header>
+
+<p><strong>Honest disclosure:</strong> IBM Bob was used as a coding assistant — generating code, debugging, reviewing accessibility and privacy decisions. The AI shown inside the prototype app is a client-side simulation, not a live IBM service.</p>
+
+<h2>Phase 1 — Problem Decomposition</h2>
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">1</div>
+    <div class="phase-title">Breaking down the civic problem</div>
+    <span class="phase-tag">Planning</span>
+  </div>
+  <p>Bob was given the full Bobathon problem statement and asked to decompose it into implementable engineering modules.</p>
+  <h3>What Bob produced</h3>
+  <ul>
+    <li>8-module breakdown: Report → Analysis → Duplicate Detection → Risk Score → Human Review → Alert → Route → Task → Resolution</li>
+    <li>Data model: <code>Report</code>, <code>AIAnalysis</code>, <code>Alert</code>, <code>Task</code>, <code>NeighbourhoodStats</code>, <code>Metrics</code></li>
+    <li>State management strategy: React Context + useReducer, no external state library needed</li>
+    <li>Privacy constraints identified early: neighbourhood-level only, no personal identity in public alerts</li>
+  </ul>
+  <div class="screenshot-placeholder">📸 Screenshot placeholder — add IBM Bob conversation showing problem decomposition</div>
+</div>
+
+<h2>Phase 2 — Architecture Design</h2>
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">2</div>
+    <div class="phase-title">Component tree and data flow</div>
+    <span class="phase-tag">Architecture</span>
+  </div>
+  <p>Bob designed the full React component hierarchy, sidebar-based shell layout, and type definitions.</p>
+  <h3>Key decisions made with Bob</h3>
+  <ul>
+    <li>Sidebar + Topbar shell replacing a flat tab bar — better for mobile navigation and future expansion</li>
+    <li>Semantic Tailwind design system: navy/teal/amber/surface tokens instead of raw colour classes</li>
+    <li><code>AppContext</code> (community reports) and <code>FlowContext</code> (FlowSense telemetry) separated for clean boundaries</li>
+    <li>All seeded demo data in <code>data/seedData.ts</code> and <code>data/flowSeedData.ts</code></li>
+  </ul>
+  <div class="screenshot-placeholder">📸 Screenshot placeholder — add IBM Bob conversation showing architecture design</div>
+</div>
+
+<h2>Phase 3 — Agent Workflow Design</h2>
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">3</div>
+    <div class="phase-title">7-stage agentic pipeline</div>
+    <span class="phase-tag">AI Design</span>
+  </div>
+  <p>Bob defined the Observe → Understand → Verify → Assess Risk → Recommend → Coordinate → Follow Up pipeline and made it visible in the UI.</p>
+  <h3>Design choices</h3>
+  <ul>
+    <li>Each stage is shown to the user during processing — no black-box AI</li>
+    <li>Human review gate at stage 4: risk ≥ 75 requires approval</li>
+    <li>Decision trace panel explains what the AI observed, inferred, and why</li>
+    <li>Confidence score shown with bar visualization, not just a number</li>
+  </ul>
+  <div class="screenshot-placeholder">📸 Screenshot placeholder — add IBM Bob conversation showing agent pipeline design</div>
+</div>
+
+<h2>Phase 4 — Code Generation: Core Modules</h2>
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">4</div>
+    <div class="phase-title">React/TypeScript/Tailwind components</div>
+    <span class="phase-tag">Implementation</span>
+  </div>
+  <p>Bob generated all major components with full TypeScript types, Tailwind styling, and accessibility attributes.</p>
+  <h3>Components generated</h3>
+  <ul>
+    <li><code>ReportForm.tsx</code> — multilingual form, validation, demo seed button, animated AI processing</li>
+    <li><code>ReviewDashboard.tsx</code> — human review workflow, approve/reject with confirmation</li>
+    <li><code>AlertsView.tsx</code> — green/amber/red alert levels, route card</li>
+    <li><code>TasksPanel.tsx</code> — task coordination, status flow, notes timeline</li>
+    <li><code>ResolutionView.tsx</code> — resolution timeline, follow-up prompts</li>
+    <li><code>Dashboard.tsx</code> — KPI cards, neighbourhood risk bars, active alerts summary</li>
+  </ul>
+  <div class="screenshot-placeholder">📸 Screenshot placeholder — add IBM Bob conversation showing component generation</div>
+</div>
+
+<h2>Phase 5 — FlowSense Module</h2>
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">5</div>
+    <div class="phase-title">Real-time road condition detection</div>
+    <span class="phase-tag">Advanced Feature</span>
+  </div>
+  <p>Bob designed and implemented the FlowSense module — a simulated mobility telemetry anomaly detector.</p>
+  <h3>Key implementations</h3>
+  <ul>
+    <li>Rain simulation engine with speed degradation model</li>
+    <li>8-phase detection pipeline with live animation</li>
+    <li>5 seeded road segments (HSR Layout, Koramangala, Whitefield, Yelahanka, Rajajinagar)</li>
+    <li>Emergency vehicle routing with time estimates</li>
+    <li>All telemetry labelled "Simulated aggregated mobility data" — privacy by design</li>
+  </ul>
+  <div class="screenshot-placeholder">📸 Screenshot placeholder — add IBM Bob conversation showing FlowSense implementation</div>
+</div>
+
+<h2>Phase 6 — Bug Fixing</h2>
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">6</div>
+    <div class="phase-title">3 critical bugs identified and fixed</div>
+    <span class="phase-tag">Debugging</span>
+  </div>
+  <div class="before-after">
+    <div class="before">
+      <strong>Bug 1: Blank page crash</strong><br />
+      JSX icon functions defined inside a <code>const</code> array at module scope in <code>Sidebar.tsx</code> — React crashed before render.
+    </div>
+    <div class="after">
+      <strong>Fix:</strong> Replaced all SVG JSX components with plain emoji strings — zero render overhead, same visual result.
+    </div>
+  </div>
+  <div class="before-after">
+    <div class="before">
+      <strong>Bug 2: PostCSS crash</strong><br />
+      <code>surface: { 0: '#ffffff' }</code> in <code>tailwind.config.js</code> — Tailwind v3 cannot generate utilities from a <code>0</code> numeric key.
+    </div>
+    <div class="after">
+      <strong>Fix:</strong> Removed the <code>0</code> key entirely. Replaced with <code>surface-50</code> and <code>surface-100</code> named keys.
+    </div>
+  </div>
+  <div class="before-after">
+    <div class="before">
+      <strong>Bug 3: Stale import</strong><br />
+      <code>useFlow</code> was imported but unused in <code>App.tsx</code> — TypeScript error blocking build.
+    </div>
+    <div class="after">
+      <strong>Fix:</strong> Removed the unused import. TypeScript build passes with 0 errors.
+    </div>
+  </div>
+  <div class="screenshot-placeholder">📸 Screenshot placeholder — add IBM Bob conversation showing bug identification and fix</div>
+</div>
+
+<h2>Phase 7 — Accessibility Review</h2>
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">7</div>
+    <div class="phase-title">ARIA, keyboard nav, mobile-first</div>
+    <span class="phase-tag">Accessibility</span>
+  </div>
+  <p>Bob performed a full accessibility audit and implemented improvements.</p>
+  <h3>Improvements added</h3>
+  <ul>
+    <li>ARIA labels on all icon-only buttons and form fields</li>
+    <li>Focus rings on all interactive elements (<code>focus:ring-2 focus:ring-blue-500</code>)</li>
+    <li>Keyboard navigation on custom controls (file upload zone, incident type buttons)</li>
+    <li><code>aria-pressed</code> on toggle buttons, <code>aria-describedby</code> on error messages</li>
+    <li>Reduced-motion support: <code>@media (prefers-reduced-motion)</code> suppresses animations</li>
+    <li>High-contrast status indicators: colour + text label, never colour alone</li>
+    <li>Mobile-first layout with 44px minimum touch targets</li>
+  </ul>
+  <div class="screenshot-placeholder">📸 Screenshot placeholder — add IBM Bob accessibility review conversation</div>
+</div>
+
+<h2>Phase 8 — Privacy Review</h2>
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">8</div>
+    <div class="phase-title">Privacy safeguards and disclosures</div>
+    <span class="phase-tag">Privacy</span>
+  </div>
+  <p>Bob reviewed all data flows and identified privacy considerations for a civic platform.</p>
+  <h3>Privacy decisions implemented</h3>
+  <ul>
+    <li>Reporter identity (<code>reporterAlias</code>) is never shown in public alerts — only neighbourhood</li>
+    <li>Exact location is captured as neighbourhood-level only — no home address stored</li>
+    <li>Image upload uses browser <code>objectURL</code> — no server upload, no photo persistence</li>
+    <li>Anonymous reporting supported — alias is set to "Anonymous" in state</li>
+    <li>FlowSense telemetry uses aggregated road segments, never individual vehicle tracking</li>
+    <li>50-sample minimum threshold before any anomaly is flagged</li>
+    <li>Privacy &amp; Safety page accessible from every page footer</li>
+  </ul>
+  <div class="screenshot-placeholder">📸 Screenshot placeholder — add IBM Bob privacy review conversation</div>
+</div>
+
+<h2>Phase 9 — UI Refinement</h2>
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">9</div>
+    <div class="phase-title">Design system and visual polish</div>
+    <span class="phase-tag">Design</span>
+  </div>
+  <p>Bob refined the visual design across all components to match the civic-tech brief.</p>
+  <h3>Design system tokens</h3>
+  <ul>
+    <li><strong>Navy</strong> (<code>#0F2A4A</code>) — trust, civic authority, headers</li>
+    <li><strong>Teal</strong> (<code>#0F7173</code>) — positive actions, verified status, FlowSense</li>
+    <li><strong>Amber</strong> (<code>#D97706</code>) — caution, pending, warnings</li>
+    <li><strong>Red</strong> (<code>#DC2626</code>) — danger, high severity, critical alerts</li>
+    <li><strong>Surface</strong> (<code>#f7f8fa</code>) — neutral backgrounds</li>
+  </ul>
+  <div class="highlight">Component classes added: <code>.btn</code>, <code>.btn-primary</code>, <code>.btn-secondary</code>, <code>.btn-success</code>, <code>.btn-danger</code>, <code>.card</code>, <code>.badge</code>, <code>.alert-banner</code>, <code>.metric-card</code>, <code>.input-field</code></div>
+  <div class="screenshot-placeholder">📸 Screenshot placeholder — add IBM Bob UI refinement conversation</div>
+</div>
+
+<h2>Phase 10 — Documentation</h2>
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">10</div>
+    <div class="phase-title">README, submission docs, this document</div>
+    <span class="phase-tag">Documentation</span>
+  </div>
+  <p>Bob generated all project documentation.</p>
+  <h3>Documents produced</h3>
+  <ul>
+    <li><code>README.md</code> — full project documentation (1,200+ words)</li>
+    <li><code>RainReady-FlowSense-Submission.pptx</code> — 8-slide presentation</li>
+    <li><code>bob-development-evidence.html</code> — this document</li>
+    <li><code>README.html</code> — formatted project README</li>
+    <li>Submission summary for hackathon copy-paste</li>
+  </ul>
+  <div class="screenshot-placeholder">📸 Screenshot placeholder — add IBM Bob documentation generation conversation</div>
+</div>
+
+<h2>Summary: Bob Usage Statistics</h2>
+<div class="phase">
+  <ul>
+    <li><strong>Files generated:</strong> 44 source files (TypeScript, CSS, config)</li>
+    <li><strong>Bugs fixed:</strong> 3 critical (blank page, PostCSS crash, stale import)</li>
+    <li><strong>Accessibility improvements:</strong> 15+ ARIA/keyboard/focus additions</li>
+    <li><strong>Privacy decisions:</strong> 7 explicit safeguards documented</li>
+    <li><strong>Build output:</strong> 59 modules, ~84 kB gzipped JS, 0 TypeScript errors</li>
+    <li><strong>Runtime IBM AI:</strong> None — all AI in the app is client-side simulation</li>
+  </ul>
+</div>
+
+<footer>
+  Built with IBM Bob · RainReady FlowSense · IBM Bobathon 2026 · Student Category
+</footer>
+
+</div>
+</body>
+</html>

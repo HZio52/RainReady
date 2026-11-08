@@ -1,0 +1,25 @@
+RainReady FlowSense — IBM Bobathon 2026
+
+PROTOTYPE LINK
+--------------
+Run locally:  http://localhost:5173
+
+Setup Instructions:
+1. Extract rainready-flowsense-submission.zip
+2. Open a terminal in the extracted folder
+3. Run: npm install
+4. Run: npm run dev
+5. Open: http://localhost:5173
+
+Demo Flow (< 3 minutes):
+1. Open FlowSense Overview
+2. Click "Simulate Heavy Rain near HSR Layout"
+3. Watch automatic anomaly detection
+4. Review AI evidence (93% confidence, Risk 91/100)
+5. Approve and broadcast public alert
+6. View emergency route redirection
+7. Restore normal traffic
+8. See recovery monitoring and resolution
+
+Note: This is a local prototype. No cloud deployment URL is available.
+All telemetry is simulated aggregated data — no individual tracking.
